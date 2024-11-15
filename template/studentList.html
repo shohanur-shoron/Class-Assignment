@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+    <title>View Students</title>
+</head>
+<body>
+
+    <div class="topBtns">
+        <a href="{% url 'create_student' %}" class="btns">Add a Student</a>
+        <a href="{% url 'student_list' %}" class="btns active">View Students</a>
+    </div>
+
+    <div class="viewStudent">
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Department</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                  <tr>
+                    <td>{{ student.student_id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.department }}</td>
+                    <td><a href="{% url 'update_student' student.id %}" class="update">Update</a><a href="{% url 'delete_student' student.id %}" class="delete">Delete</a></td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+</body>
+</html>
